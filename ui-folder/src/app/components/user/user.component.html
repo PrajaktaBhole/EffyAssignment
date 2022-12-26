@@ -1,0 +1,89 @@
+<header id="header">
+  <nav>
+    <div class="container">
+      <div class="text-center">
+        <!-- <a href="/" class="nav-brand text-dark">All Users</a> -->
+        <h3 class="nav-brand text-white">All Users</h3>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Main Table -->
+<div class="container">
+  <div class="box-nav d-flex justify-between">
+    <!-- <a href="add-user.component.html" class="border-shadow tag"> -->
+    <!-- <nav> -->
+    <a routerLink="/add-user" class="border-shadow tag">
+      <span class="text-gradient"
+        >Add new user <i class="fa-solid fa-user"></i
+      ></span>
+    </a>
+    <!-- </nav> -->
+    <!-- <router-outlet></router-outlet> -->
+  </div>
+  <div class="box-nav d-flex justify-between">
+    <div class="link-text">
+      <a routerLink="/companies"
+        >Go To Companies Table<i class="fas fa-angle-double-right"></i
+      ></a>
+    </div>
+    <!-- <div>
+      <app-search
+        (searchedTextChanged)="onSearchTextEntered($event)"
+      ></app-search>
+    </div> -->
+  </div>
+
+  <form action="/" method="post">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Designation</th>
+          <th>Date of Birth</th>
+          <th>Status</th>
+          <!-- <th>CompanyId</th> -->
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let user of userList; let i = index">
+        <!-- <tr *ngFor="let user of userList; let i = index"> -->
+        <tr
+          *ngIf="
+            searchText === '' ||
+            user.firstName.toLowerCase().includes(searchText)
+          "
+        ></tr>
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.firstName }} {{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.designation }}</td>
+        <td>{{ user.dateOfBirth }}</td>
+        <!-- <td>{{ user.active }}</td> -->
+        <td *ngIf="user.active" class="active">Active</td>
+        <td *ngIf="!user.active" class="inactive">Inactive</td>
+        <!-- <td>1</td> -->
+        <td>
+          <a
+            routerLink="/update-user"
+            class="btn border-shadow edit"
+            (click)="userInfo(user)"
+          >
+            <span class="text-gradient">
+              <i class="fas fa-pencil-alt"></i>
+            </span>
+          </a>
+          <a class="btn border-shadow delete" (click)="deleteUser(user._id)">
+            <span class="text-gradient">
+              <i class="fas fa-trash"></i>
+            </span>
+          </a>
+        </td>
+        <!-- </tr> -->
+      </tbody>
+    </table>
+  </form>
+</div>

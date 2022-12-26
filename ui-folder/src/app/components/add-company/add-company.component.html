@@ -1,0 +1,64 @@
+<!-- <p>add-user works!</p> -->
+<header id="header">
+  <nav>
+    <div class="container">
+      <div class="text-center">
+        <!-- <a href="/" class="nav-brand text-dark">All Users</a> -->
+        <h3 class="nav-brand text-white">Company Registration Form</h3>
+      </div>
+    </div>
+  </nav>
+</header>
+<!-- Main Table -->
+<div class="container">
+  <div class="box-nav d-flex justify-between">
+    <div class="filter">
+      <a href=""><i class="fas fa-angle-double-left"></i> View all Companies</a>
+    </div>
+  </div>
+  <div class="form-title text-center">
+    <h2 class="text-dark">New Company</h2>
+    <span class="text-light">Kindly fill the form to create a new Company</span>
+  </div>
+  <form method="post" id="add_update_user" [formGroup]="form">
+    <div class="new_user">
+      <div class="form-group">
+        <label for="companyName">Company Name</label>
+        <input
+          type="text"
+          name="companyName"
+          value=""
+          formControlName="companyName"
+        />
+        <!-- <div *ngIf="" class="alert alert-danger">First name is required</div> -->
+      </div>
+      <div class="form-group">
+        <label for="companyAddress">Company Address</label>
+        <input
+          type="text"
+          name="companyAddress"
+          value=""
+          formControlName="companyAddress"
+        />
+      </div>
+      <div class="form-group">
+        <button
+          routerLink="/companies"
+          (click)="addCompany()"
+          type="submit"
+          class="btn text-white"
+        >
+          Add Company
+        </button>
+      </div>
+    </div>
+  </form>
+  <!-- Add new user button -->
+  <!-- <button (click)="addUser()">Add User</button> -->
+</div>
+
+<!-- <div class="radio-inline">
+  <label for="status">Status</label>
+  <input type="radio" name="active" />Active
+  <input type="radio" name="inactive" />Inactive
+</div> -->

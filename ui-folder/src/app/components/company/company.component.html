@@ -1,0 +1,101 @@
+<header id="header">
+  <nav>
+    <div class="container">
+      <div class="text-center">
+        <!-- <a href="/" class="nav-brand text-dark">All Companies</a> -->
+        <h3 class="nav-brand text-white">All Companies</h3>
+      </div>
+    </div>
+  </nav>
+</header>
+<!-- Main Table -->
+<div class="container">
+  <div class="box-nav d-flex justify-between">
+    <a routerLink="/add-company" class="border-shadow tag">
+      <span class="text-gradient"
+        >Add new company <i class="fa-regular fa-building"></i
+      ></span>
+    </a>
+  </div>
+  <div class="box-nav d-flex justify-between">
+    <div class="filter">
+      <a routerLink="/"
+        >Go To Users Table<i class="fas fa-angle-double-right"></i
+      ></a>
+    </div>
+  </div>
+  <form action="/" method="post">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Company ID</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>View on Map</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companyList; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ company.companyName }}</td>
+          <td>{{ company.companyAddress }}</td>
+          <td>
+            <iframe
+              width="100"
+              height="10"
+              frameborder="0"
+              scrolling="no"
+              marginheight="0"
+              marginwidth="0"
+              src="https://maps.google.com/maps?q='company.location[0],company.location[1]'&hl=es;z=14&amp;output=embed"
+            >
+            </iframe>
+            <br />
+            <small>
+              <a
+                href="https://maps.google.com/maps?q={{
+                  company.location[0]
+                }},{{ company.location[1] }}&hl=es;z=14&amp"
+                style="color: #0000ff; text-align: left"
+                target="_blank"
+              >
+                See map bigger
+              </a>
+            </small>
+          </td>
+          <td>
+            <a
+              routerLink="/update-company"
+              (click)="companyInfo(company)"
+              class="btn border-shadow edit"
+            >
+              <span class="text-gradient">
+                <i class="fas fa-pencil-alt"></i>
+              </span>
+            </a>
+            <a
+              class="btn border-shadow delete"
+              (click)="deleteCompany(company._id)"
+            >
+              <span class="text-gradient">
+                <i class="fas fa-trash"></i>
+              </span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+
+<!-- src="https://maps.google.com/maps?q='19.0822507,72.8811862'&hl=es;z=14&amp;output=embed" -->
+<!-- <small>
+  <a
+    href="https://maps.google.com/maps?q=19.0822507,72.8811862&hl=es;z=14&amp"
+    style="color: #0000ff; text-align: left"
+    target="_blank"
+  >
+    See map bigger
+  </a>
+</small> -->
